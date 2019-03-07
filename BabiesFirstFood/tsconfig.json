@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "noImplicitAny": false, //Vuex has a few issues with typescript, so I had to do this
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "strict": false, //Vuex has a few issues with typescript, so I had to do this
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "bin",
+    "node_modules",
+    "wwwroot"
+  ]
+}
