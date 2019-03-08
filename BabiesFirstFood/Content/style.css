@@ -3355,3 +3355,18 @@ form {
   background: rgba(51, 51, 51, 0.8) !important; }
 
 /* Components */
+#calendar p {
+  text-align: center;
+  margin: 0;
+  padding: 0; }
+
+#calendar .calendar-grid {
+  margin: 0;
+  padding: 0; }
+  #calendar .calendar-grid li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 14.285714285714285714285714285714%;
+    text-align: center;
+    border: 1px solid #333; }

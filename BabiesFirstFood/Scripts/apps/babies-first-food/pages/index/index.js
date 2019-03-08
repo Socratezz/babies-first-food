@@ -22,7 +22,11 @@ var IndexComponent = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     IndexComponent = __decorate([
-        Component
+        Component({
+            components: {
+                Calendar: require('../../components/calendar/calendar.vue').default
+            }
+        })
     ], IndexComponent);
     return IndexComponent;
 }(Vue));

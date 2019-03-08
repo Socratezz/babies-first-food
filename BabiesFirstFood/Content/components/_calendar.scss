@@ -1,0 +1,27 @@
+﻿#calendar {
+    & p {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    & .calendar-grid {
+        margin: 0;
+        padding: 0;
+
+        & li {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            width: 14.285714285714285714285714285714%;
+            text-align: center;
+            border: 1px solid $black;
+        }
+    }
+    & #calendar-days {
+
+    }
+
+    & #calendar-dates {
+        
+    }
+}

@@ -155,7 +155,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\components\" />
     <Folder Include="Content\images\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -218,10 +217,13 @@
     <Content Include="Content\fonts\Roboto-Regular.ttf" />
     <Content Include="Content\fonts\Roboto-Thin.ttf" />
     <Content Include="Content\fonts\Roboto-ThinItalic.ttf" />
+    <Content Include="Scripts\apps\babies-first-food\components\calendar\calendar.vue" />
+    <Content Include="Content\components\_calendar.scss" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\app.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\boot.ts" />
+    <TypeScriptCompile Include="Scripts\apps\babies-first-food\components\calendar\calendar.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\pages\index\index.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\router.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\store\index.ts" />
