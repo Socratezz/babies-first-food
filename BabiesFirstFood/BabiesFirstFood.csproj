@@ -224,6 +224,7 @@
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\app.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\boot.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\components\calendar\calendar.ts" />
+    <TypeScriptCompile Include="Scripts\apps\babies-first-food\components\calendar\model.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\pages\index\index.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\router.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\store\index.ts" />

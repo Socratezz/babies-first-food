@@ -1,12 +1,13 @@
 ﻿import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import { CalendarData } from '../calendar/model';
 
 @Component
 export default class CalendarComponent extends Vue {
     monthString: string = '';
     yearString: string = ''; 
     days: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    dates: Date[] = [];
+    calendarData: CalendarData[] = [];
 
     created(): void {
         let date = new Date();
@@ -17,18 +18,37 @@ export default class CalendarComponent extends Vue {
 
     getDatesInMonth(month: number, year: number) {
         let numOfDays = new Date(year, month + 1, 0).getDate();
+        let today = new Date();
         for (var i = 1; i <= numOfDays; i++) {
-            this.dates.push(new Date(year, month, i));           
+            const date: CalendarData = {
+                date: new Date(year, month, i),
+                day: new Date(year, month, i).getDate(),
+                currentMonth: true,
+                currentDay: today.getDate() === new Date(year, month, i).getDate() ? true : false
+            };
+            this.calendarData.push(date);           
         }
-        for (var i = this.dates[0].getDay(); i > 0; i--) {
-            let yesterday = new Date(this.dates[0].getTime());
-            yesterday.setDate(this.dates[0].getDate() - 1);
-            this.dates.unshift(yesterday);
+        for (var i = this.calendarData[0].date.getDay(); i > 0; i--) {
+            let yesterday = new Date();
+            yesterday.setDate(this.calendarData[0].date.getDate() - 1);
+            const date: CalendarData = {
+                date: yesterday,
+                day: yesterday.getDate(),
+                currentMonth: false,
+                currentDay: false
+            };
+            this.calendarData.unshift(date);
         }
-        for (var i = this.dates.length; i < 42; i++) {
-            let tomorrow = new Date(this.dates[i - 1].getTime());
-            tomorrow.setDate(this.dates[i - 1].getDate() + 1);
-            this.dates.push(tomorrow);
+        for (var i = this.calendarData.length; i < 42; i++) {
+            let tomorrow = new Date();
+            tomorrow.setDate(this.calendarData[i - 1].date.getDate() + 1);
+            const date: CalendarData = {
+                date: tomorrow,
+                day: tomorrow.getDate(),
+                currentMonth: false,
+                currentDay: false
+            };
+            this.calendarData.push(date);
         }
     }
 }

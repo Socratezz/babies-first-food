@@ -3355,10 +3355,11 @@ form {
   background: rgba(51, 51, 51, 0.8) !important; }
 
 /* Components */
-#calendar p {
+#calendar .header {
   text-align: center;
   margin: 0;
-  padding: 0; }
+  padding: 2rem;
+  font-size: 2rem; }
 
 #calendar .calendar-grid {
   margin: 0;
@@ -3369,4 +3370,26 @@ form {
     padding: 0;
     width: 14.285714285714285714285714285714%;
     text-align: center;
-    border: 1px solid #333; }
+    border-radius: 3px; }
+    #calendar .calendar-grid li div {
+      padding: 1rem; }
+
+#calendar #calendar-days li {
+  padding: 1rem; }
+
+#calendar #calendar-dates {
+  border: 0 solid #333;
+  border-width: 0 0 1px 1px; }
+  #calendar #calendar-dates li {
+    border: 0 solid #333;
+    border-width: 1px 1px 0 0; }
+    #calendar #calendar-dates li p {
+      margin: 0;
+      padding: 0; }
+    #calendar #calendar-dates li .enabled {
+      cursor: pointer; }
+    #calendar #calendar-dates li .today {
+      background-color: #0081c5;
+      color: #fdfdfd; }
+    #calendar #calendar-dates li .disabled {
+      color: #b3b3b3; }

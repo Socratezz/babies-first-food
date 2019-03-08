@@ -23,7 +23,7 @@ var CalendarComponent = /** @class */ (function (_super) {
         _this.monthString = '';
         _this.yearString = '';
         _this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        _this.dates = [];
+        _this.calendarData = [];
         return _this;
     }
     CalendarComponent.prototype.created = function () {
@@ -34,14 +34,37 @@ var CalendarComponent = /** @class */ (function (_super) {
     };
     CalendarComponent.prototype.getDatesInMonth = function (month, year) {
         var numOfDays = new Date(year, month + 1, 0).getDate();
+        var today = new Date();
         for (var i = 1; i <= numOfDays; i++) {
-            this.dates.push(new Date(year, month, i));
+            var date = {
+                date: new Date(year, month, i),
+                day: new Date(year, month, i).getDate(),
+                currentMonth: true,
+                currentDay: today.getDate() === new Date(year, month, i).getDate() ? true : false
+            };
+            this.calendarData.push(date);
         }
-        for (var i = this.dates[0].getDay(); i > 0; i--) {
-            this.dates.unshift(new Date(this.dates[0].getDate() - 1));
+        for (var i = this.calendarData[0].date.getDay(); i > 0; i--) {
+            var yesterday = new Date();
+            yesterday.setDate(this.calendarData[0].date.getDate() - 1);
+            var date = {
+                date: yesterday,
+                day: yesterday.getDate(),
+                currentMonth: false,
+                currentDay: false
+            };
+            this.calendarData.unshift(date);
         }
-        for (var i = this.dates.length; i < 42; i++) {
-            this.dates.push(new Date(this.dates[i].getDate() + 1));
+        for (var i = this.calendarData.length; i < 42; i++) {
+            var tomorrow = new Date();
+            tomorrow.setDate(this.calendarData[i - 1].date.getDate() + 1);
+            var date = {
+                date: tomorrow,
+                day: tomorrow.getDate(),
+                currentMonth: false,
+                currentDay: false
+            };
+            this.calendarData.push(date);
         }
     };
     CalendarComponent = __decorate([
