@@ -311,7 +311,7 @@ a {
 
 @font-face {
   font-family: 'Roboto';
-  src: url("/singlefamily/Content/fonts/Roboto-Regular.ttf") format("truetype");
+  src: url("/Content/fonts/Roboto-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
 
@@ -874,8 +874,8 @@ form {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("/singlefamily/Content/fonts/fontawesome-webfont.eot");
-  src: url("/singlefamily/Content/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("/singlefamily/Content/fonts/fontawesome-webfont.woff2") format("woff2"), url("/singlefamily/Content/fonts/fontawesome-webfont.woff") format("woff"), url("/singlefamily/Content/fonts/fontawesome-webfont.ttf") format("truetype"), url("/singlefamily/Content/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
+  src: url("/Content/fonts/fontawesome-webfont.eot");
+  src: url("/Content/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("/Content/fonts/fontawesome-webfont.woff2") format("woff2"), url("/Content/fonts/fontawesome-webfont.woff") format("woff"), url("/Content/fonts/fontawesome-webfont.ttf") format("truetype"), url("/Content/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -3359,7 +3359,17 @@ form {
   text-align: center;
   margin: 0;
   padding: 2rem;
-  font-size: 2rem; }
+  font-size: 2rem;
+  position: relative; }
+  #calendar .header .previous, #calendar .header .next {
+    position: absolute;
+    padding: 1rem;
+    cursor: pointer;
+    top: 2.7rem; }
+  #calendar .header .previous {
+    left: 2rem; }
+  #calendar .header .next {
+    right: 2rem; }
 
 #calendar .calendar-grid {
   margin: 0;
@@ -3379,10 +3389,12 @@ form {
 
 #calendar #calendar-dates {
   border: 0 solid #333;
-  border-width: 0 0 1px 1px; }
+  border-width: 0 0 1px 1px;
+  border-radius: 3px; }
   #calendar #calendar-dates li {
     border: 0 solid #333;
-    border-width: 1px 1px 0 0; }
+    border-width: 1px 1px 0 0;
+    border-radius: 3px; }
     #calendar #calendar-dates li p {
       margin: 0;
       padding: 0; }

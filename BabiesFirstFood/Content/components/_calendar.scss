@@ -4,6 +4,20 @@
         margin: 0;
         padding: 2rem;
         font-size: 2rem;
+        position: relative;
+
+        & .previous, .next {
+            position: absolute;
+            padding: 1rem;
+            cursor:pointer;
+            top: 2.7rem;
+        }
+        & .previous {
+            left: 2rem;
+        }
+        & .next {
+            right: 2rem;
+        }
     }
     & .calendar-grid {
         margin: 0;
@@ -31,10 +45,12 @@
     & #calendar-dates {
         border: 0 solid $black;
         border-width: 0 0 1px 1px;
+        border-radius: 3px;  
 
         & li {
             border: 0 solid $black;
             border-width: 1px 1px 0 0;
+            border-radius: 3px;  
 
             & p {
                 margin: 0;
