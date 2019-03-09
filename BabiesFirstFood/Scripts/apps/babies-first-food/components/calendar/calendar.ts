@@ -32,7 +32,7 @@ export default class CalendarComponent extends Vue {
             this.calendarData.push(date);           
         }
         for (var i = this.calendarData[0].date.getDay(); i > 0; i--) {
-            let yesterday = new Date();
+            let yesterday = new Date(this.calendarData[0].date.getTime());
             yesterday.setDate(this.calendarData[0].date.getDate() - 1);
             const date: CalendarData = {
                 date: yesterday,
@@ -43,7 +43,7 @@ export default class CalendarComponent extends Vue {
             this.calendarData.unshift(date);
         }
         for (var i = this.calendarData.length; i < 42; i++) {
-            let tomorrow = new Date();
+            let tomorrow = new Date(this.calendarData[i - 1].date.getTime());
             tomorrow.setDate(this.calendarData[i - 1].date.getDate() + 1);
             const date: CalendarData = {
                 date: tomorrow,
