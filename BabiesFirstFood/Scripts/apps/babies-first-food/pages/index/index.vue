@@ -2,7 +2,7 @@
     <div id="home" class="container">
         <div class="row">
             <div class="three columns">
-                HELLO LAUREL
+                <food />
             </div>
             <div class="nine columns">
                 <calendar />
