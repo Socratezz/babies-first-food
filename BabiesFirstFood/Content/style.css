@@ -3355,6 +3355,9 @@ form {
   background: rgba(51, 51, 51, 0.8) !important; }
 
 /* Components */
+#header h1 {
+  text-align: center; }
+
 #calendar .header {
   text-align: center;
   margin: 0;
@@ -3375,7 +3378,7 @@ form {
   margin: 0;
   padding: 0; }
   #calendar .calendar-grid li {
-    display: inline-block;
+    display: inline-grid;
     margin: 0;
     padding: 0;
     width: 14.285714285714285714285714285714%;
@@ -3394,14 +3397,17 @@ form {
   #calendar #calendar-dates li {
     border: 0 solid #333;
     border-width: 1px 1px 0 0;
-    border-radius: 3px; }
-    #calendar #calendar-dates li p {
-      margin: 0;
-      padding: 0; }
-    #calendar #calendar-dates li .enabled {
-      cursor: pointer; }
-    #calendar #calendar-dates li .today {
-      background-color: #0081c5;
-      color: #fdfdfd; }
-    #calendar #calendar-dates li .disabled {
-      color: #b3b3b3; }
+    border-radius: 3px;
+    height: 110px; }
+    #calendar #calendar-dates li div {
+      height: 100%; }
+      #calendar #calendar-dates li div p {
+        margin: 0;
+        padding: 0; }
+      #calendar #calendar-dates li div.enabled {
+        cursor: pointer; }
+      #calendar #calendar-dates li div.today {
+        background-color: #0081c5;
+        color: #fdfdfd; }
+      #calendar #calendar-dates li div.disabled {
+        color: #b3b3b3; }

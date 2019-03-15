@@ -16,20 +16,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-var IndexComponent = /** @class */ (function (_super) {
-    __extends(IndexComponent, _super);
-    function IndexComponent() {
+var FoodComponent = /** @class */ (function (_super) {
+    __extends(FoodComponent, _super);
+    function FoodComponent() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    IndexComponent = __decorate([
-        Component({
-            components: {
-                Calendar: require('../../components/calendar/calendar.vue').default,
-                Food: require('../../components/food/food.vue').default
-            }
-        })
-    ], IndexComponent);
-    return IndexComponent;
+    FoodComponent = __decorate([
+        Component
+    ], FoodComponent);
+    return FoodComponent;
 }(Vue));
-export default IndexComponent;
-//# sourceMappingURL=index.js.map
+export default FoodComponent;
+//# sourceMappingURL=food.js.map

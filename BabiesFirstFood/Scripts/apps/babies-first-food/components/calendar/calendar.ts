@@ -1,8 +1,12 @@
 ﻿import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import { CalendarData } from '../calendar/model';
+import CalendarData from '../../store/model';
 
-@Component
+@Component({
+    components: {
+        NewFood: require('../new-food-modal/new-food-modal.vue').default
+    }
+})
 export default class CalendarComponent extends Vue {
     month: number = 0;
     monthString: string = '';
@@ -16,6 +20,7 @@ export default class CalendarComponent extends Vue {
         this.monthString = date.toLocaleString('en-us', { month: 'long' });
         this.year = date.getFullYear();
         this.getDatesInMonth(date.getMonth(), date.getFullYear());
+        this.$store.commit('MutateCalendar', this.calendarData);
     }
 
     getDatesInMonth(month: number, year: number) {
@@ -72,4 +77,9 @@ export default class CalendarComponent extends Vue {
         this.year = previousMonth.getFullYear();
         this.getDatesInMonth(previousMonth.getMonth(), previousMonth.getFullYear());
     }
+
+    openEnterFoodModal(index: number) {
+        this.$modal.show('EnterFoodModal', { options: index});
+    }
+
 }

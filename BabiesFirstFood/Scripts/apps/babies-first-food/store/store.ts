@@ -6,15 +6,17 @@ import { BabiesFirstFood } from './types';
 import Axios from 'axios';
 
 export const state: BabiesFirstFood = {
-
+    calendar: [],
 }
 
 export const getters: GetterTree<BabiesFirstFood, any> = {
-
+    calendar: state => state.calendar,
 }
 
 export const mutations: MutationTree<BabiesFirstFood> = {
-
+    MutateCalendar(state, item) {
+        state.calendar = item;
+    },
 }
 
 export const actions: ActionTree<BabiesFirstFood, any> = {

@@ -219,12 +219,18 @@
     <Content Include="Content\fonts\Roboto-ThinItalic.ttf" />
     <Content Include="Scripts\apps\babies-first-food\components\calendar\calendar.vue" />
     <Content Include="Content\components\_calendar.scss" />
+    <Content Include="Scripts\apps\babies-first-food\components\food\food.vue" />
+    <Content Include="Content\components\_index.scss" />
+    <Content Include="Scripts\apps\babies-first-food\components\new-food-modal\new-food-modal.vue" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\app.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\boot.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\components\calendar\calendar.ts" />
-    <TypeScriptCompile Include="Scripts\apps\babies-first-food\components\calendar\model.ts" />
+    <TypeScriptCompile Include="Scripts\apps\babies-first-food\components\new-food-modal\new-food-modal.ts" />
+    <TypeScriptCompile Include="Scripts\apps\babies-first-food\store\model.ts" />
+    <TypeScriptCompile Include="Scripts\apps\babies-first-food\components\food\food.ts" />
+    <TypeScriptCompile Include="Scripts\apps\babies-first-food\components\food\model.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\pages\index\index.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\router.ts" />
     <TypeScriptCompile Include="Scripts\apps\babies-first-food\store\index.ts" />

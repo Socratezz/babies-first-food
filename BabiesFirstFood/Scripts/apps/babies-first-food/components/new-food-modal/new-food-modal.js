@@ -16,20 +16,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-var IndexComponent = /** @class */ (function (_super) {
-    __extends(IndexComponent, _super);
-    function IndexComponent() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var NewFoodComponent = /** @class */ (function (_super) {
+    __extends(NewFoodComponent, _super);
+    function NewFoodComponent() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.data = {};
+        return _this;
     }
-    IndexComponent = __decorate([
-        Component({
-            components: {
-                Calendar: require('../../components/calendar/calendar.vue').default,
-                Food: require('../../components/food/food.vue').default
-            }
-        })
-    ], IndexComponent);
-    return IndexComponent;
+    NewFoodComponent.prototype.beforeOpen = function (event) {
+        this.data = this.$store.getters.calendar[event.params.options];
+    };
+    NewFoodComponent = __decorate([
+        Component
+    ], NewFoodComponent);
+    return NewFoodComponent;
 }(Vue));
-export default IndexComponent;
-//# sourceMappingURL=index.js.map
+export default NewFoodComponent;
+//# sourceMappingURL=new-food-modal.js.map

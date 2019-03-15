@@ -1,3 +1,5 @@
-﻿export interface BabiesFirstFood {
+﻿import CalendarData from './model';
 
+export interface BabiesFirstFood {
+    calendar: CalendarData[];
 }

@@ -20,32 +20,36 @@ var CalendarComponent = /** @class */ (function (_super) {
     __extends(CalendarComponent, _super);
     function CalendarComponent() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.month = 0;
         _this.monthString = '';
-        _this.yearString = '';
+        _this.year = 0;
         _this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         _this.calendarData = [];
         return _this;
     }
     CalendarComponent.prototype.created = function () {
         var date = new Date();
+        this.month = date.getMonth();
         this.monthString = date.toLocaleString('en-us', { month: 'long' });
-        this.yearString = date.getFullYear().toString();
+        this.year = date.getFullYear();
         this.getDatesInMonth(date.getMonth(), date.getFullYear());
+        this.$store.commit('MutateCalendar', this.calendarData);
     };
     CalendarComponent.prototype.getDatesInMonth = function (month, year) {
+        this.calendarData = [];
         var numOfDays = new Date(year, month + 1, 0).getDate();
-        var today = new Date();
+        var today = new Date().setHours(0, 0, 0, 0);
         for (var i = 1; i <= numOfDays; i++) {
             var date = {
                 date: new Date(year, month, i),
                 day: new Date(year, month, i).getDate(),
                 currentMonth: true,
-                currentDay: today.getDate() === new Date(year, month, i).getDate() ? true : false
+                currentDay: today === new Date(year, month, i).setHours(0, 0, 0, 0) ? true : false
             };
             this.calendarData.push(date);
         }
         for (var i = this.calendarData[0].date.getDay(); i > 0; i--) {
-            var yesterday = new Date();
+            var yesterday = new Date(this.calendarData[0].date.getTime());
             yesterday.setDate(this.calendarData[0].date.getDate() - 1);
             var date = {
                 date: yesterday,
@@ -56,7 +60,7 @@ var CalendarComponent = /** @class */ (function (_super) {
             this.calendarData.unshift(date);
         }
         for (var i = this.calendarData.length; i < 42; i++) {
-            var tomorrow = new Date();
+            var tomorrow = new Date(this.calendarData[i - 1].date.getTime());
             tomorrow.setDate(this.calendarData[i - 1].date.getDate() + 1);
             var date = {
                 date: tomorrow,
@@ -67,8 +71,31 @@ var CalendarComponent = /** @class */ (function (_super) {
             this.calendarData.push(date);
         }
     };
+    CalendarComponent.prototype.nextMonth = function () {
+        var currentMonth = new Date(this.year, this.month, 1);
+        var nextMonth = new Date(currentMonth.setMonth(currentMonth.getMonth() + 1));
+        this.month = nextMonth.getMonth();
+        this.monthString = nextMonth.toLocaleString('en-us', { month: 'long' });
+        this.year = nextMonth.getFullYear();
+        this.getDatesInMonth(nextMonth.getMonth(), nextMonth.getFullYear());
+    };
+    CalendarComponent.prototype.previousMonth = function () {
+        var currentMonth = new Date(this.year, this.month, 1);
+        var previousMonth = new Date(currentMonth.setMonth(currentMonth.getMonth() - 1));
+        this.month = previousMonth.getMonth();
+        this.monthString = previousMonth.toLocaleString('en-us', { month: 'long' });
+        this.year = previousMonth.getFullYear();
+        this.getDatesInMonth(previousMonth.getMonth(), previousMonth.getFullYear());
+    };
+    CalendarComponent.prototype.openEnterFoodModal = function (index) {
+        this.$modal.show('EnterFoodModal', { options: index });
+    };
     CalendarComponent = __decorate([
-        Component
+        Component({
+            components: {
+                NewFood: require('../new-food-modal/new-food-modal.vue').default
+            }
+        })
     ], CalendarComponent);
     return CalendarComponent;
 }(Vue));
