@@ -87,15 +87,12 @@ var CalendarComponent = /** @class */ (function (_super) {
         this.year = previousMonth.getFullYear();
         this.getDatesInMonth(previousMonth.getMonth(), previousMonth.getFullYear());
     };
-    CalendarComponent.prototype.openEnterFoodModal = function (index) {
-        this.$modal.show('EnterFoodModal', { options: index });
+    CalendarComponent.prototype.SaveFood = function (index) {
+        var newData = this.$store.getters.calendar.slice();
+        //this.$store.commit('MutateCalendar', newData);
     };
     CalendarComponent = __decorate([
-        Component({
-            components: {
-                NewFood: require('../new-food-modal/new-food-modal.vue').default
-            }
-        })
+        Component
     ], CalendarComponent);
     return CalendarComponent;
 }(Vue));

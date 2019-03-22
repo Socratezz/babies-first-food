@@ -3404,6 +3404,8 @@ form {
       #calendar #calendar-dates li div p {
         margin: 0;
         padding: 0; }
+        #calendar #calendar-dates li div p input[type="text"] {
+          width: 100%; }
       #calendar #calendar-dates li div.enabled {
         cursor: pointer; }
       #calendar #calendar-dates li div.today {

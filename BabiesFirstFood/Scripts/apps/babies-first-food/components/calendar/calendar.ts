@@ -2,11 +2,7 @@
 import { Component } from 'vue-property-decorator';
 import CalendarData from '../../store/model';
 
-@Component({
-    components: {
-        NewFood: require('../new-food-modal/new-food-modal.vue').default
-    }
-})
+@Component
 export default class CalendarComponent extends Vue {
     month: number = 0;
     monthString: string = '';
@@ -21,6 +17,13 @@ export default class CalendarComponent extends Vue {
         this.year = date.getFullYear();
         this.getDatesInMonth(date.getMonth(), date.getFullYear());
         this.$store.commit('MutateCalendar', this.calendarData);
+    }
+    mounted(): void {
+        this.$store.watch(
+            (state) => { return state.calendar; },
+            () => { this.calendarData = this.$store.getters.calendar },
+            { deep: true }
+        );
     }
 
     getDatesInMonth(month: number, year: number) {
@@ -78,8 +81,16 @@ export default class CalendarComponent extends Vue {
         this.getDatesInMonth(previousMonth.getMonth(), previousMonth.getFullYear());
     }
 
-    openEnterFoodModal(index: number) {
-        this.$modal.show('EnterFoodModal', { options: index});
-    }
+    SaveFood(index, event) {
+        if (event.target.value == null || event.target.value == '')
+            return;
 
+        let newData: CalendarData[] = [...this.$store.getters.calendar];
+        newData[index].food = event.target.value;
+        index++;
+        newData[index].food = event.target.value;
+        index++;
+        newData[index].food = event.target.value;
+        this.$store.commit('MutateCalendar', newData);
+    }
 }

@@ -11,14 +11,13 @@
             </li>
         </ul>
         <ul id="calendar-dates" class="calendar-grid">
-            <li v-for="(data, index) in calendarData" @click="openEnterFoodModal(index)">
+            <li v-for="(data, index) in calendarData">
                 <div v-bind:class="{disabled: !data.currentMonth, enabled: data.currentMonth, today: data.currentDay}">
                     <p>{{data.day}}</p>
-                    <p>{{data.food}}</p>
+                    <p><input type="text" v-bind:value="data.food" @keyup.enter="SaveFood(index, $event)"/></p>
                 </div>
             </li>
         </ul>
-        <new-food />
     </div>
 </template>
 
