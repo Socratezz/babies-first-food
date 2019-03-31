@@ -10,10 +10,10 @@ ALTER PROC [dbo].[GetBabyFood] (
 AS
 BEGIN
     if @StartDate is not null begin
-		select * from dbo.BabyFood where StartDate >= @StartDate and EndDate <= @EndDate
+		select * from dbo.BabyFood where Date >= @StartDate and Date <= @EndDate
 	end
 	else begin
-		select * from dbo.BabyFood where EndDate <= @EndDate
+		select * from dbo.BabyFood where Date <= @EndDate
 	end 
 END
 GO

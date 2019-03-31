@@ -3,32 +3,25 @@
 GO
 
 ALTER PROC [dbo].[InsertBabyFood] (
-	@StartDate date,
-	@EndDate date,
-	@Food varchar(200),
-	@Liked bit,
-	@Disliked bit,
-	@AllergyReaction bit,
-	@Comments varchar(500)
+	@Date date,
+	@Food varchar(200)
 )
 
 AS
 BEGIN
-    if not exists (select 1 from BabyFood where lower(Food) = lower(@Food)) begin
+    if not exists (select 1 from BabyFood where Date = @Date) begin
 		insert into BabyFood (
-			StartDate
-			, EndDate
+			Date
 			, Food
 		)
 		values (
-			@StartDate
-			, @EndDate
+			@Date
 			, @Food
 		)
 		SELECT SCOPE_IDENTITY()
 	end
 	else begin
-		select 0
+		update BabyFood set Food = @Food where Date = @Date
 	end
 END
 GO

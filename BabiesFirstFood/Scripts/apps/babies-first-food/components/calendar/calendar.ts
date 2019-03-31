@@ -1,6 +1,8 @@
 ﻿import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import CalendarData from '../../store/model';
+import Axios from 'axios';
+import { AxiosResponse } from 'axios';
 
 @Component
 export default class CalendarComponent extends Vue {
@@ -16,7 +18,6 @@ export default class CalendarComponent extends Vue {
         this.monthString = date.toLocaleString('en-us', { month: 'long' });
         this.year = date.getFullYear();
         this.getDatesInMonth(date.getMonth(), date.getFullYear());
-        this.$store.commit('MutateCalendar', this.calendarData);
     }
     mounted(): void {
         this.$store.watch(
@@ -61,6 +62,20 @@ export default class CalendarComponent extends Vue {
             };
             this.calendarData.push(date);
         }
+        this.$store.commit('MutateCalendar', this.calendarData);
+        const params = { StartDate: this.calendarData[0].date, EndDate: this.calendarData[this.calendarData.length - 1].date };
+        Axios.post('/api/food/get', params)
+            .then((response) => {
+                let newData: CalendarData[] = [...this.$store.getters.calendar];
+                response.data.forEach((food) => {
+                    newData.forEach((c) => {
+                        const foodDate = new Date(food.Date);
+                        if (c.date.getTime() === foodDate.getTime())
+                            c.food = food.Food;
+                    });
+                });
+                this.$store.commit('MutateCalendar', newData);
+            });
     }
 
     nextMonth() {
@@ -84,13 +99,24 @@ export default class CalendarComponent extends Vue {
     SaveFood(index, event) {
         if (event.target.value == null || event.target.value == '')
             return;
-
+        let dbData: CalendarData[] = [];
         let newData: CalendarData[] = [...this.$store.getters.calendar];
         newData[index].food = event.target.value;
+        dbData.push(newData[index]);
         index++;
         newData[index].food = event.target.value;
+        dbData.push(newData[index]);
         index++;
         newData[index].food = event.target.value;
+        dbData.push(newData[index]);
         this.$store.commit('MutateCalendar', newData);
+        let insert = [];
+        dbData.forEach((food) => {
+            insert.push({
+                Date: food.date,
+                Food: food.food
+            });
+        });
+        Axios.post('/api/food/new', insert);
     }
 }

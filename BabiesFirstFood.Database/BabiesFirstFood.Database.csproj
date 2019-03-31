@@ -66,10 +66,9 @@
     <Content Include="lib\DbUp.dll" />
     <Content Include="ManualScripts\initDB.sql" />
     <Content Include="ManualScripts\initUser.sql" />
+    <EmbeddedResource Include="Scripts\Tables\Food-fix.sql" />
     <EmbeddedResource Include="Scripts\StoredProcedures\GetBabyFood.sql" />
     <EmbeddedResource Include="Scripts\StoredProcedures\InsertBabyFood.sql" />
-    <EmbeddedResource Include="Scripts\StoredProcedures\UpdateBabyFood.sql" />
-    <EmbeddedResource Include="Scripts\Tables\Food.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

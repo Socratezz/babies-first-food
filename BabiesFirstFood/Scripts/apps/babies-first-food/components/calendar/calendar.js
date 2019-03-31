@@ -16,6 +16,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import Axios from 'axios';
 var CalendarComponent = /** @class */ (function (_super) {
     __extends(CalendarComponent, _super);
     function CalendarComponent() {
@@ -28,12 +29,30 @@ var CalendarComponent = /** @class */ (function (_super) {
         return _this;
     }
     CalendarComponent.prototype.created = function () {
+        var _this = this;
         var date = new Date();
         this.month = date.getMonth();
         this.monthString = date.toLocaleString('en-us', { month: 'long' });
         this.year = date.getFullYear();
         this.getDatesInMonth(date.getMonth(), date.getFullYear());
         this.$store.commit('MutateCalendar', this.calendarData);
+        var params = { StartDate: this.calendarData[0].date, EndDate: this.calendarData[this.calendarData.length - 1].date };
+        Axios.post('/api/food/get', params)
+            .then(function (response) {
+            var newData = _this.$store.getters.calendar.slice();
+            response.data.forEach(function (food) {
+                newData.forEach(function (c) {
+                    var foodDate = new Date(food.Date);
+                    if (c.date.getTime() === foodDate.getTime())
+                        c.food = food.Food;
+                });
+            });
+            _this.$store.commit('MutateCalendar', newData);
+        });
+    };
+    CalendarComponent.prototype.mounted = function () {
+        var _this = this;
+        this.$store.watch(function (state) { return state.calendar; }, function () { _this.calendarData = _this.$store.getters.calendar; }, { deep: true });
     };
     CalendarComponent.prototype.getDatesInMonth = function (month, year) {
         this.calendarData = [];
@@ -87,9 +106,28 @@ var CalendarComponent = /** @class */ (function (_super) {
         this.year = previousMonth.getFullYear();
         this.getDatesInMonth(previousMonth.getMonth(), previousMonth.getFullYear());
     };
-    CalendarComponent.prototype.SaveFood = function (index) {
+    CalendarComponent.prototype.SaveFood = function (index, event) {
+        if (event.target.value == null || event.target.value == '')
+            return;
+        var dbData = [];
         var newData = this.$store.getters.calendar.slice();
-        //this.$store.commit('MutateCalendar', newData);
+        newData[index].food = event.target.value;
+        dbData.push(newData[index]);
+        index++;
+        newData[index].food = event.target.value;
+        dbData.push(newData[index]);
+        index++;
+        newData[index].food = event.target.value;
+        dbData.push(newData[index]);
+        this.$store.commit('MutateCalendar', newData);
+        var insert = [];
+        dbData.forEach(function (food) {
+            insert.push({
+                Date: food.date,
+                Food: food.food
+            });
+        });
+        Axios.post('/api/food/new', insert);
     };
     CalendarComponent = __decorate([
         Component
